@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Moritz Project Zomboid Server — Release</title>
+  <meta name="description" content="Der Project Zomboid Server von Moritz startet am Freitag um 19:00 Uhr.">
+  <link rel="canonical" href="https://neon2512.github.io/moritz-zomboid-release/">
+  <link rel="icon" href="./favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Moritz’ Project Zomboid Server">
+  <meta property="og:description" content="Release · Freitag, 28. August 2026 · 19:00 Uhr">
+  <meta property="og:url" content="https://neon2512.github.io/moritz-zomboid-release/">
+  <meta property="og:image" content="https://neon2512.github.io/moritz-zomboid-release/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <main class="release-page">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="storm-flash" aria-hidden="true"></div>
+    <div class="rain-system" aria-hidden="true">
+      <div class="rain-haze"></div>
+      <canvas id="rain-canvas" class="rain-canvas"></canvas>
+    </div>
+    <div class="embers" aria-hidden="true">
+      <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i>
+      <i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i>
+    </div>
+
+    <aside class="music-player" id="music-player" aria-label="Hintergrundmusik">
+      <audio id="background-music" src="./28-days-later.mp3" preload="metadata" autoplay loop></audio>
+      <button id="music-toggle" type="button" aria-pressed="false">
+        <span class="music-icon" id="music-icon" aria-hidden="true">▶</span>
+        <span class="music-copy"><small id="music-status">AUTOSTART</small><strong>28 DAYS LATER</strong></span>
+        <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </button>
+    </aside>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Moritz Survival Startseite"><span class="brand-mark">M</span><span>MORITZ // SURVIVAL</span></a>
+      <nav aria-label="Seitennavigation"><a href="#release">Release</a><a href="#protokoll">Protokoll</a><a href="#signal">Signal</a></nav>
+      <span class="signal"><i></i> SIGNAL ONLINE</span>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="hero-art" style="background-image:url('./survival-hero.png')" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span>SERVER RELEASE</span><b>01 / MORITZ</b></div>
+        <p class="warning"><i></i> DIE TORE ÖFFNEN SICH</p>
+        <h1>MORITZ’<br><em>PROJECT ZOMBOID</em><br>SERVER</h1>
+        <p class="intro">Die Straßen sind still. Die Vorräte werden knapp. Am Freitag beginnt unser Überlebenskampf.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#release">COUNTDOWN ANSEHEN <span>↓</span></a>
+          <a class="button button-ghost" href="./moritz-server-release.ics" download>TERMIN SPEICHERN <span>+</span></a>
+        </div>
+      </div>
+      <div class="hero-index" aria-hidden="true"><span>28</span><i></i>08<i></i>26</div>
+      <div class="scroll-note" aria-hidden="true">SCROLL TO SURVIVE <i></i></div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div>
+      <span>FREITAG · 19:00 UHR</span><b>///</b><span>SERVER RELEASE</span><b>///</b><span>KEINE ZWEITE CHANCE</span><b>///</b>
+      <span>FREITAG · 19:00 UHR</span><b>///</b><span>SERVER RELEASE</span><b>///</b><span>KEINE ZWEITE CHANCE</span><b>///</b>
+    </div></div>
+
+    <section class="release-section" id="release">
+      <div class="section-number">02</div>
+      <div class="release-heading">
+        <p class="kicker">// EINSATZBEREIT</p>
+        <h2>DER COUNTDOWN<br><em>LÄUFT.</em></h2>
+        <p>Freitag, 28. August 2026 · 19:00 Uhr · Berlin</p>
+      </div>
+      <div class="countdown" id="countdown" aria-label="Countdown bis zum Serverstart" aria-live="polite">
+        <div class="countdown-cell"><strong data-time="days">--</strong><span>TAGE</span></div>
+        <div class="countdown-cell"><strong data-time="hours">--</strong><span>STD</span></div>
+        <div class="countdown-cell"><strong data-time="minutes">--</strong><span>MIN</span></div>
+        <div class="countdown-cell"><strong data-time="seconds">--</strong><span>SEK</span></div>
+      </div>
+      <div class="release-bar"><span>STATUS</span><strong><i></i> SERVER WIRD VORBEREITET</strong><b>RELEASE 01</b></div>
+    </section>
+
+    <section class="protocol-section" id="protokoll">
+      <div class="protocol-intro"><p class="kicker">// ÜBERLEBENSPROTOKOLL</p><h2>DREI REGELN.<br>EIN ZIEL.</h2><p>Wenn die Sirenen verstummen, zählt nur noch, was du vorbereitet hast.</p></div>
+      <div class="protocol-grid">
+        <article><span>01</span><i class="protocol-icon">⌁</i><h3>SAMMELN</h3><p>Vorräte sichern. Jede Dose, jede Bandage und jede Patrone kann die letzte sein.</p></article>
+        <article><span>02</span><i class="protocol-icon">◫</i><h3>BAUEN</h3><p>Verstärke dein Versteck. Licht zieht Aufmerksamkeit an – und die Nacht ist lang.</p></article>
+        <article><span>03</span><i class="protocol-icon">⌖</i><h3>ÜBERLEBEN</h3><p>Vertraue deinem Team. Plane deine Route. Ein Fehler reicht für das Ende.</p></article>
+      </div>
+    </section>
+
+    <section class="final-call" id="signal">
+      <div class="radar" aria-hidden="true"><i></i><i></i><span></span></div>
+      <p class="kicker">// LETZTE ÜBERTRAGUNG</p>
+      <h2>BIST DU<br><em>BEREIT?</em></h2>
+      <p>Die Frequenz steht. Das Signal ist stabil.<br>Am Freitag sehen wir uns auf der anderen Seite.</p>
+      <a class="button button-primary" href="./moritz-server-release.ics" download>RELEASE EINTRAGEN <span>+</span></a>
+    </section>
+
+    <footer><span>MORITZ // PROJECT ZOMBOID SERVER</span><span>28.08.2026 · 19:00 CEST</span><span>ÜBERTRAGUNG ENDE ■</span></footer>
+  </main>
+</body>
+</html>

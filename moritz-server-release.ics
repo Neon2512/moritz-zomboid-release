@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Moritz Survival//Server Release//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:moritz-zomboid-release-20260828T190000@moritz-survival
+DTSTAMP:20260823T000000Z
+DTSTART;TZID=Europe/Berlin:20260828T190000
+DTEND;TZID=Europe/Berlin:20260828T220000
+SUMMARY:Moritz Project Zomboid Server Release
+DESCRIPTION:Der Überlebenskampf beginnt. Moritz’ Project Zomboid Server geht live.
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR
