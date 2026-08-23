@@ -79,6 +79,8 @@
   if (!trail) return;
 
   const TAU = Math.PI * 2;
+  const TRAIL_LIFETIME_SECONDS = 3;
+  const TRAIL_OPACITY_AT_END = 0.004;
   let width = innerWidth;
   let height = innerHeight;
   let ratio = 1;
@@ -282,7 +284,8 @@
     context.lineCap = 'round';
     trail.save();
     trail.globalCompositeOperation = 'destination-out';
-    trail.fillStyle = `rgba(0,0,0,${1 - Math.exp(-dt / 11.5)})`;
+    const trailFade = 1 - Math.pow(TRAIL_OPACITY_AT_END, dt / TRAIL_LIFETIME_SECONDS);
+    trail.fillStyle = `rgba(0,0,0,${trailFade})`;
     trail.fillRect(0, 0, width, height);
     trail.restore();
     for (const streak of streaks) drawStreak(streak, dt);
