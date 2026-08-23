@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="./styles.css">
   <script defer src="./app.js"></script>
 </head>
-<body>
+<body class="gate-active">
   <main class="release-page">
     <div class="grain" aria-hidden="true"></div>
     <div class="scanlines" aria-hidden="true"></div>
@@ -29,6 +29,21 @@
     <div class="embers" aria-hidden="true">
       <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i>
       <i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i>
+    </div>
+
+    <div class="entry-gate" id="entry-gate" role="dialog" aria-modal="true" aria-labelledby="entry-title">
+      <div class="entry-gate-backdrop" aria-hidden="true"></div>
+      <div class="entry-gate-panel">
+        <span class="entry-code">SIGNAL 01 // MORITZ</span>
+        <p>PROJECT ZOMBOID SERVER</p>
+        <h2 id="entry-title">DIE TORE<br><em>ÖFFNEN SICH.</em></h2>
+        <button class="entry-button" id="entry-button" type="button">
+          <span>TON AKTIVIEREN</span>
+          <strong>BETRITT DEN SERVER</strong>
+          <small>▶ 28 DAYS LATER</small>
+        </button>
+        <span class="entry-note">EIN KLICK STARTET DIE ÜBERTRAGUNG</span>
+      </div>
     </div>
 
     <aside class="music-player" id="music-player" aria-label="Hintergrundmusik">
