@@ -33,8 +33,18 @@
   const toggle = document.getElementById('music-toggle');
   const icon = document.getElementById('music-icon');
   const status = document.getElementById('music-status');
+  const entryGate = document.getElementById('entry-gate');
+  const entryButton = document.getElementById('entry-button');
   if (audio && toggle && player && icon && status) {
     audio.volume = .55;
+    const dismissEntryGate = () => {
+      if (!entryGate || entryGate.classList.contains('is-leaving')) return;
+      entryGate.classList.add('is-leaving');
+      entryButton?.blur();
+      entryGate.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gate-active');
+      window.setTimeout(() => { entryGate.hidden = true; }, 800);
+    };
     const syncAudioState = () => {
       const playing = !audio.paused;
       player.classList.toggle('is-playing', playing);
@@ -42,20 +52,32 @@
       icon.textContent = playing ? 'Ⅱ' : '▶';
       if (playing) status.textContent = 'NOW PLAYING';
     };
-    const attemptPlay = async () => {
+    const attemptPlay = async (dismissGate = false) => {
       try {
         await audio.play();
         player.classList.remove('needs-gesture');
         syncAudioState();
+        if (dismissGate) dismissEntryGate();
+        return true;
       } catch {
         player.classList.add('needs-gesture');
         status.textContent = 'KLICK FÜR TON';
+        return false;
       }
     };
     const startOnInteraction = (event) => {
-      if (event.target instanceof Element && event.target.closest('.music-player')) return;
+      if (event.target instanceof Element && event.target.closest('.music-player, .entry-gate')) return;
       attemptPlay();
     };
+    entryButton?.addEventListener('click', async () => {
+      entryButton.disabled = true;
+      entryButton.querySelector('span').textContent = 'ÜBERTRAGUNG WIRD GESTARTET';
+      const started = await attemptPlay(true);
+      if (!started) {
+        entryButton.disabled = false;
+        entryButton.querySelector('span').textContent = 'NOCH EINMAL VERSUCHEN';
+      }
+    });
     toggle.addEventListener('click', async () => {
       if (!audio.paused) audio.pause();
       else await attemptPlay();
@@ -67,7 +89,7 @@
     for (const name of ['pointerdown', 'keydown', 'touchstart', 'wheel']) {
       window.addEventListener(name, startOnInteraction, { passive: true });
     }
-    attemptPlay();
+    attemptPlay(true);
   }
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
